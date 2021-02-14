@@ -15,8 +15,9 @@ import logging
 
 import patterns
 import view
+import socket
 
-logging.basicConfig(filename='view.log', level=logging.DEBUG)
+logging.basicConfig(filename='logs/view.log', level=logging.DEBUG)
 logger = logging.getLogger()
 
 

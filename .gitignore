@@ -1,7 +1,9 @@
 venv/
 .vscode/
+logs/
 __pycache__
 
 
 view.log
 pyvenv.cfg
+venv.sh
