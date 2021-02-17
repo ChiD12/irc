@@ -157,7 +157,7 @@ class View(patterns.Publisher):
         while True:
             try:
                 self._input_getch()
-                await asyncio.sleep(0.05)
+                await asyncio.sleep(2)
             except KeyboardInterrupt:
                 # KeyboardInterrupt signifies the end of the view
                 logger.debug(f"KeyboardInterrupt detected within the view")
