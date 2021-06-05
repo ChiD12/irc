@@ -12,7 +12,7 @@ import pathlib
 
 import patterns
 
-logging.basicConfig(filename='logs/view.log', level=logging.DEBUG)
+logging.basicConfig(filename='view.log', level=logging.DEBUG)
 logger = logging.getLogger()
 
 
@@ -78,7 +78,7 @@ class View(patterns.Publisher):
         self._welcome_banner()
 
     def _welcome_banner(self):
-        banner_file = pathlib.Path('banner.txt')
+        banner_file = pathlib.Path('client/banner.txt')
         if banner_file.is_file():
             with banner_file.open() as f:
                 lines = f.readlines()
@@ -124,10 +124,10 @@ class View(patterns.Publisher):
             # nothing inputed
             return
         logger.debug(f"Character int: {ch}")
-        if ch < 9 or ch > 2**7:
+        if ch < 8 or ch > 2**7:
             # non-ascii chars
             return
-        elif ch == 127:
+        elif ch == 127 or ch == 8:
             # Delete char from input box
             # and from _input_chrs
             y,x = self.input_win.getyx()
@@ -148,6 +148,7 @@ class View(patterns.Publisher):
             # for debugging
             #self.add_msg('chr', f"{ch} - " + chr(ch))
 
+
     async def run(self):
         """
         Loops and watches input_win 
@@ -157,7 +158,7 @@ class View(patterns.Publisher):
         while True:
             try:
                 self._input_getch()
-                await asyncio.sleep(2)
+                await asyncio.sleep(0.05)
             except KeyboardInterrupt:
                 # KeyboardInterrupt signifies the end of the view
                 logger.debug(f"KeyboardInterrupt detected within the view")
